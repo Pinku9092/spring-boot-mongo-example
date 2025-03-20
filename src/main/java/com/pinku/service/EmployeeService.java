@@ -6,6 +6,9 @@ import com.pinku.model.Employee;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Service
 public class EmployeeService {
 
@@ -29,5 +32,15 @@ public class EmployeeService {
             return "Error creating employee";
         }
         return "Employee created successfully";
+    }
+
+    public List<Employee> getAllEmployees() {
+        List<Employee> employees = new ArrayList<>();
+        try{
+            employees = employeeRepository.findAll();
+        } catch (Exception e) {
+            System.out.println("Error fetching employees");
+        }
+        return employees;
     }
 }
